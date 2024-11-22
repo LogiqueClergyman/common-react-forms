@@ -55,3 +55,24 @@ export type FormField =
   | EmailField
   | PasswordField
   | NumberField;
+
+export type InputFieldConfig = {
+  name: string;
+  label: string;
+  type: FieldType;
+  value: any;
+  required?: boolean;
+  placeholder?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+  domain?: string;
+  regex?: RegExp;
+  minLength?: number;
+  maxLength?: number;
+};
+
+export type FormProps = {
+  fields: Record<string, InputFieldConfig>;
+  onSubmit: (values: any) => void;
+};

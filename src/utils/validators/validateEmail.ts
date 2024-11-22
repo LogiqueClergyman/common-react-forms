@@ -14,6 +14,10 @@ export const validateEmail = ({
   if (required && !value) {
     return 'This field is required';
   }
+  const basicEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!basicEmailRegex.test(value)) {
+    return 'Invalid email format';
+  }
   if (domain) {
     const domainRegex = new RegExp(`^[^@]+@${domain}$`);
     if (!domainRegex.test(value)) {
