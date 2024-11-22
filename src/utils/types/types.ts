@@ -1,4 +1,4 @@
-import { FieldType } from './enums';
+import { FieldType } from '../enums/enums';
 export interface BaseField<T = string | boolean | number> {
   name: string;
   label: string;

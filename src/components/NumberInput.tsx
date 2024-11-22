@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FieldType } from '../utils/enums';
-import { NumberField } from '../utils/types';
+import { FieldType } from '../utils/enums/enums';
+import { NumberField } from '../utils/types/types';
+import { validateNumber } from '../utils/validators/validateNumber';
 const NumberInput: React.FC<NumberField> = ({
   name,
   label,
@@ -16,22 +17,12 @@ const NumberInput: React.FC<NumberField> = ({
   step,
 }) => {
   const [inputError, setInputError] = useState<string | undefined>(error);
-  const validate = (newValue: number) => {
-    if (min && newValue < min) {
-      setInputError(`Value must be at least ${min}`);
-      return;
-    }
-
-    if (max && newValue > max) {
-      setInputError(`Value must be less than ${max}`);
-      return;
-    }
-    setInputError(undefined);
-  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     onChange(Number(newValue));
-    validate(Number(newValue));
+    setInputError(
+      validateNumber({ required, value: Number(newValue), step, min, max }),
+    );
   };
   return (
     <div>

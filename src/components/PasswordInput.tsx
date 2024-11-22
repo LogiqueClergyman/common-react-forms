@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { PasswordField } from '../utils/types';
-import { FieldType } from '../utils/enums';
+import { PasswordField } from '../utils/types/types';
+import { FieldType } from '../utils/enums/enums';
+import { validatePassword } from '../utils/validators/validatePassword';
 const PasswordInput: React.FC<PasswordField> = ({
   name,
   label,
@@ -16,32 +17,18 @@ const PasswordInput: React.FC<PasswordField> = ({
   regex,
 }) => {
   const [inputError, setInputError] = useState<string | undefined>(error);
-  const validate = (newValue: string) => {
-    if (required && !value) {
-      setInputError('This field is required');
-      return;
-    }
-
-    if (minLength && newValue.length < minLength) {
-      setInputError(`Minimum length is ${minLength} characters`);
-      return;
-    }
-
-    if (maxLength && newValue.length > maxLength) {
-      setInputError(`Maximum length is ${maxLength} characters`);
-      return;
-    }
-
-    if (regex && !regex.test(newValue)) {
-      setInputError('Invalid format');
-      return;
-    }
-    setInputError(undefined);
-  };
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     onChange(newValue);
-    validate(newValue);
+    setInputError(
+      validatePassword({
+        value: newValue,
+        required,
+        minLength,
+        maxLength,
+        regex,
+      }),
+    );
   };
   return (
     <div>
