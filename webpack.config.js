@@ -1,71 +1,48 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const loader = require("sass-loader");
-const webpack = require("webpack");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-module.exports = (env, argv) => {
-  const isDev = argv.mode === "development";
-  const isProd = argv.mode === "production";
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
+process.env.NODE_ENV = 'development';
+module.exports = (env, argv) => {
+  const isDev = argv.mode === 'development';
   return {
-    entry: "./src/index.tsx",
+    entry: './src/index.tsx',
     output: {
-      filename: isProd ? "bundle.[contenthash].js" : "bundle.js",
-      path: path.resolve(__dirname, "dist"),
-      publicPath: "/",
+      path: path.resolve(__dirname, './dist'),
+      filename: 'bundle.js',
+      clean: true,
     },
-    devtool: isDev ? "source-map" : false,
-    devServer: {
-      static: path.resolve(__dirname, "dist"),
-      port: 3000,
-      hot: true,
-      open: true,
-    },
-    optimization: isProd
-      ? {
-          minimize: true,
-          splitChunks: {
-            chunks: "all",
-          },
-        }
-      : {},
+    mode: argv.mode || 'development',
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
+      extensions: ['.tsx', '.ts', '.js'],
     },
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
+          test: /\.(js|ts|tsx)$/,
           use: [
             {
-              loader: "babel-loader",
-              options: {
-                presets: [
-                  "@babel/preset-env",
-                  "@babel/preset-react",
-                  "@babel/preset-typescript",
-                ],
-                plugins: ["@babel/plugin-transform-runtime"],
-              },
+              loader: 'babel-loader',
             },
           ],
           exclude: /node_modules/,
         },
         {
-          test: /\.s[ac]ss$/i,
-          use: ["sass-loader", "style-loader", "css-loader"],
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
         },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: "./index.html",
-        inject: true,
-      }),
-      new webpack.DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify(argv.mode),
+        template: './index.html',
       }),
       isDev && new ReactRefreshWebpackPlugin(),
     ].filter(Boolean),
+    devServer: {
+      static: path.resolve(__dirname, './dist'),
+      hot: true,
+      historyApiFallback: true,
+    },
   };
 };

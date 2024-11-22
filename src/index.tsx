@@ -1,6 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-const App = () => <div>Hello, Webpack!</div>;
-// @ts-expect-error - This is a known issue with React 18
+import ReactDOM from 'react-dom/client';
+import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root')!);
-root.render(<App />);
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);
