@@ -25,23 +25,22 @@ const NumberInput: React.FC<NumberField> = ({
     );
   };
   return (
-    <div>
-      <label>
-        {label}
-        <input
-          type={type}
-          name={name}
-          value={value as number}
-          onChange={handleChange}
-          style={style}
-          required={required}
-          placeholder={placeholder}
-          step={step}
-          min={min}
-          max={max}
-        />
-        {inputError && <p className="error-message">{inputError}</p>}
-      </label>
+    <div className="input-container">
+      {label && <label className="input-label">{label}</label>}
+      <input
+        type={type}
+        name={name}
+        value={value as number}
+        onChange={handleChange}
+        style={style}
+        required={required}
+        placeholder={placeholder}
+        step={step}
+        min={min}
+        max={max}
+        className="input-box"
+      />
+      {inputError && <p className="error-message">{inputError}</p>}
     </div>
   );
 };

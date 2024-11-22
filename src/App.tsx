@@ -1,7 +1,8 @@
 import React from 'react';
 import Form from './components/Form';
 import { FieldType } from './utils/enums/enums';
-
+import TextInput from './components/TextInput';
+import './main.css';
 const App = () => {
   const fields = {
     email: {
@@ -23,6 +24,15 @@ const App = () => {
     console.log('Form submitted with values:', values);
   };
 
-  return <Form fields={fields} onSubmit={handleSubmit} />;
+  return (
+    <div>
+      <Form fields={fields} onSubmit={handleSubmit} />
+      <TextInput
+        name="username"
+        label="Username"
+        onChange={(value) => console.log(value)}
+      />
+    </div>
+  );
 };
 export default App;

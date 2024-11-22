@@ -7,7 +7,7 @@ import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import TextInput from './TextInput';
 import { FieldType } from '../utils/enums/enums';
-import { InputFieldConfig, FormProps } from '../utils/types/types';
+import { InputFieldConfig, FormProps, CommonProps } from '../utils/types/types';
 
 const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
   const [values, setValues] = useState(
@@ -104,14 +104,14 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
   };
 
   const renderInput = (field: InputFieldConfig) => {
-    const commonProps = {
+    const commonProps: CommonProps = {
       onChange: (value: any) => handleChange(field.name, value),
       error: errors[field.name],
       ...field,
       name: field.name,
       value: values[field.name],
     };
-
+    delete commonProps.label;
     const inputComponents: Record<FieldType, React.ElementType> = {
       [FieldType.NUMBER]: NumberInput,
       [FieldType.EMAIL]: EmailInput,
@@ -128,9 +128,12 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
     <form onSubmit={handleSubmit}>
       {Object.keys(fields).map((fieldName) => {
         const field = fields[fieldName];
+        {
+          console.log(field.label);
+        }
         return (
-          <div key={field.name}>
-            <label>{field.label}</label>
+          <div className="relative" key={field.name}>
+            <label className="input-label">{field.label}</label>
             {renderInput(field)}
           </div>
         );

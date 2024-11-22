@@ -28,8 +28,8 @@ module.exports = (env, argv) => {
           exclude: /node_modules/,
         },
         {
-          test: /\.css$/i,
-          use: ['style-loader', 'css-loader'],
+          test: /\.(css)$/i,
+          use: ['style-loader', 'css-loader', 'postcss-loader'],
         },
       ],
     },

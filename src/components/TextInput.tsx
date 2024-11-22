@@ -31,20 +31,19 @@ const TextInput: React.FC<TextField> = ({
     );
   };
   return (
-    <div>
-      <label>
-        {label}
-        <input
-          type={type}
-          name={name}
-          value={value as string}
-          onChange={handleChange}
-          style={style}
-          required={required}
-          placeholder={placeholder}
-        />
-        {inputError && <p className="error-message">{inputError}</p>}
-      </label>
+    <div className="input-container">
+      {label && <label className="input-label">{label}</label>}
+      <input
+        type={type}
+        name={name}
+        value={value as string}
+        onChange={handleChange}
+        style={style}
+        required={required}
+        placeholder={placeholder}
+        className="input-box"
+      />
+      {inputError && <p className="error-message">{inputError}</p>}
     </div>
   );
 };

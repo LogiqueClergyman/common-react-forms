@@ -22,20 +22,21 @@ const EmailInput: React.FC<EmailField> = ({
     setInputError(validateEmail({ value: newValue, required, domain, regex }));
   };
   return (
-    <div>
-      <label>
-        {label}
-        <input
-          type={type}
-          name={name}
-          value={value as string}
-          onChange={handleChange}
-          style={style}
-          required={required}
-          placeholder={placeholder}
-        />
-        {inputError && <p className="error-message">{inputError}</p>}
-      </label>
+    <div className="input-container">
+      {label && <label className="input-label">{label}</label>}
+      <input
+        type={type}
+        name={name}
+        value={value as string}
+        onChange={handleChange}
+        style={style}
+        required={required}
+        placeholder={placeholder}
+        className="input-box"
+      />
+      {inputError && (
+        <p className="text-red-600 font-sans italic p-0 m-0">{inputError}</p>
+      )}
     </div>
   );
 };
