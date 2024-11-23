@@ -45,7 +45,8 @@ const PasswordInput: React.FC<PasswordField> = ({
       <button onClick={() => setShowPass(!showPass)}>
         {!showPass ? '👁' : '🕶'}
       </button>
-      {inputError && <p className="error-message">{inputError}</p>}
+      {inputError && <p className="basic-error">{inputError}</p>}
+      {value && !inputError && <p className="basic-valid">Looks good!</p>}
     </div>
   );
 };

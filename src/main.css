@@ -7,9 +7,29 @@
 }
 
 .input-label {
-  @apply focus:bg-blue-300 absolute top-1 left-8 text-sm text-blue-500 bg-white px-1 z-10;
+  @apply focus:bg-blue-300 absolute -top-0 left-5 text-sm text-blue-500 bg-white px-1 z-10;
 }
 
-.input-container{
-  @apply relative m-2 p-2;
+.input-container {
+  @apply relative mt-1;
+}
+
+.basic-form {
+  @apply relative grid grid-cols-2 w-fit;
+}
+
+.basic-error {
+  @apply text-red-600 font-sans italic px-2 relative bottom-2.5 text-sm;
+}
+
+.basic-valid {
+  @apply text-green-600 font-sans italic px-2 relative bottom-2.5 text-sm;
+}
+
+.basic-button {
+  @apply text-white bg-blue-500 px-6 py-2 w-fit rounded-lg m-2 font-semibold hover:bg-blue-800 transition-all duration-300;
+}
+
+.basic-grid {
+  @apply relative grid grid-cols-1 sm:grid-cols-2 w-fit border-2 rounded-sm p-6 sm:p-10;
 }

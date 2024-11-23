@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { EmailField } from '../utils/types/types';
-import { FieldType } from '../utils/enums/enums';
+import FieldType from '../utils/enums/enums';
 import { validateEmail } from '../utils/validators/validateEmail';
 const EmailInput: React.FC<EmailField> = ({
   name,
@@ -34,9 +34,8 @@ const EmailInput: React.FC<EmailField> = ({
         placeholder={placeholder}
         className="input-box"
       />
-      {inputError && (
-        <p className="text-red-600 font-sans italic p-0 m-0">{inputError}</p>
-      )}
+      {inputError && <p className="basic-error">{inputError}</p>}
+      {value && !inputError && <p className="basic-valid">Looks good!</p>}
     </div>
   );
 };

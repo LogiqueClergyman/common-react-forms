@@ -6,3 +6,5 @@ export enum FieldType {
   NUMBER = 'number',
   BOOLEAN = 'checkbox',
 }
+
+export default FieldType;

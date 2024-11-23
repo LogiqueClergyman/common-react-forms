@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FieldType } from '../utils/enums/enums';
+import FieldType from '../utils/enums/enums';
 import { NumberField } from '../utils/types/types';
 import { validateNumber } from '../utils/validators/validateNumber';
 const NumberInput: React.FC<NumberField> = ({
@@ -40,7 +40,8 @@ const NumberInput: React.FC<NumberField> = ({
         max={max}
         className="input-box"
       />
-      {inputError && <p className="error-message">{inputError}</p>}
+      {inputError && <p className="basic-error">{inputError}</p>}
+      {value && !inputError && <p className="basic-valid">Looks good!</p>}
     </div>
   );
 };

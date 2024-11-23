@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextField } from '../utils/types/types';
-import { FieldType } from '../utils/enums/enums';
+import FieldType from '../utils/enums/enums';
 import { validatePassword } from '../utils/validators/validatePassword';
 const TextInput: React.FC<TextField> = ({
   name,
@@ -43,7 +43,8 @@ const TextInput: React.FC<TextField> = ({
         placeholder={placeholder}
         className="input-box"
       />
-      {inputError && <p className="error-message">{inputError}</p>}
+      {inputError && <p className="basic-error">{inputError}</p>}
+      {value && !inputError && <p className="basic-valid">Looks good!</p>}
     </div>
   );
 };

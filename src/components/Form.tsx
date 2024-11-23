@@ -6,7 +6,7 @@ import NumberInput from './NumberInput';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import TextInput from './TextInput';
-import { FieldType } from '../utils/enums/enums';
+import FieldType from '../utils/enums/enums';
 import { InputFieldConfig, FormProps, CommonProps } from '../utils/types/types';
 
 const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
@@ -125,20 +125,19 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="basic-grid">
       {Object.keys(fields).map((fieldName) => {
         const field = fields[fieldName];
-        {
-          console.log(field.label);
-        }
         return (
-          <div className="relative" key={field.name}>
+          <div className="input-container" key={field.name}>
             <label className="input-label">{field.label}</label>
             {renderInput(field)}
           </div>
         );
       })}
-      <button type="submit">Submit</button>
+      <button type="submit" className="basic-button">
+        Submit
+      </button>
     </form>
   );
 };
