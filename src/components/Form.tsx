@@ -8,6 +8,8 @@ import PasswordInput from './PasswordInput';
 import TextInput from './TextInput';
 import FieldType from '../utils/enums/enums';
 import { InputFieldConfig, FormProps, CommonProps } from '../utils/types/types';
+import Slider from './Slider';
+import Options from './Options';
 
 const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
   const [values, setValues] = useState(
@@ -111,13 +113,15 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
       name: field.name,
       value: values[field.name],
     };
-    delete commonProps.label;
+    // delete commonProps.label;
     const inputComponents: Record<FieldType, React.ElementType> = {
       [FieldType.NUMBER]: NumberInput,
       [FieldType.EMAIL]: EmailInput,
       [FieldType.PASSWORD]: PasswordInput,
       [FieldType.TEXT]: TextInput,
       [FieldType.BOOLEAN]: 'symbol',
+      [FieldType.RANGE]: Slider,
+      [FieldType.OPTIONS]: Options,
     };
 
     const InputComponent = inputComponents[field.type];
@@ -130,7 +134,7 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
         const field = fields[fieldName];
         return (
           <div className="input-container" key={field.name}>
-            <label className="input-label">{field.label}</label>
+            {/* <label className="input-label">{field.label}</label> */}
             {renderInput(field)}
           </div>
         );

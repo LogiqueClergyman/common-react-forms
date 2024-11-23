@@ -33,6 +33,26 @@ const App = () => {
       value: '',
       required: true,
     },
+    maxAge: {
+      name: 'maxAge',
+      label: 'Max Age',
+      type: FieldType.RANGE,
+      value: 50,
+      min: 0,
+      max: 100,
+      step: 10,
+    },
+    vegetable: {
+      options: [
+        { label: 'Tomato', value: 1 },
+        { label: 'Potato', value: 2 },
+      ],
+      type: FieldType.OPTIONS,
+      inputType: 'dropdown' as 'dropdown',
+      dataType: 'number' as 'number',
+      label: 'Vegetable',
+      name: 'vegetable',
+    },
   };
 
   const handleSubmit = (values: any) => {

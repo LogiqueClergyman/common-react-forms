@@ -8,7 +8,7 @@ module.exports = (env, argv) => {
   const isDev = argv.mode === 'development';
   const isProd = argv.mode === 'production';
   return {
-    entry: path.resolve(__dirname, './src/index.ts'),
+    entry: path.resolve(__dirname, './src/index.tsx'),
     output: {
       path: path.resolve(__dirname, './dist'),
       filename: isProd ? 'index.js' : 'bundle.js',

@@ -5,6 +5,8 @@ export enum FieldType {
   PASSWORD = 'password',
   NUMBER = 'number',
   BOOLEAN = 'checkbox',
+  RANGE = 'range',
+  OPTIONS = 'options',
 }
 
 export default FieldType;

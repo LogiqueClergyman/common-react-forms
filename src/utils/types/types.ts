@@ -8,7 +8,8 @@ export interface BaseField<T = string | boolean | number> {
   style?: React.CSSProperties;
   placeholder?: string;
   error?: string;
-  onChange: (value: T) => void;
+  onChange: (value: any) => void;
+  custom?: any;
 }
 
 export interface TextField extends BaseField<string> {
@@ -31,15 +32,17 @@ export interface PasswordField extends BaseField<string> {
   regex?: RegExp;
 }
 
+export interface OptionsField extends BaseField<string> {
+  type?: FieldType.OPTIONS;
+  options: { label: string; value: string | number }[];
+  dataType: 'string' | 'number';
+  inputType: 'radio' | 'checkbox' | 'dropdown';
+}
 export interface NumberField extends BaseField<number> {
   type?: FieldType.NUMBER;
   min?: number;
   max?: number;
   step?: number;
-}
-
-export interface CheckboxField extends BaseField<boolean> {
-  type: FieldType.BOOLEAN;
 }
 
 export interface RadioField extends BaseField<string> {
@@ -50,7 +53,7 @@ export interface RadioField extends BaseField<string> {
 
 export type FormField =
   | TextField
-  | CheckboxField
+  | OptionsField
   | RadioField
   | EmailField
   | PasswordField
@@ -70,6 +73,9 @@ export type InputFieldConfig = {
   regex?: RegExp;
   minLength?: number;
   maxLength?: number;
+  options?: { label: string; value: string | number }[];
+  dataType?: 'string' | 'number';
+  inputType?: 'radio' | 'checkbox' | 'dropdown';
 };
 
 export type CommonProps = {
@@ -88,6 +94,9 @@ export type CommonProps = {
   maxLength?: number;
   onChange: (value: any) => void;
   error: string | undefined;
+  options?: { label: string; value: string | number }[];
+  dataType?: 'string' | 'number';
+  inputType?: 'radio' | 'checkbox' | 'dropdown';
 };
 export type FormProps = {
   fields: Record<string, InputFieldConfig>;
