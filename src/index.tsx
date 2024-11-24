@@ -16,4 +16,6 @@ root.render(
 // import TextInput from './components/TextInput';
 // import FieldType from './utils/enums/enums';
 // import EmailInput from './components/EmailInput';
-// export { Form, NumberInput, TextInput, FieldType, PasswordInput, EmailInput };
+// import Options from './components/Options';
+// import Slider from './components/Slider';
+// export { Form, NumberInput, TextInput, FieldType, PasswordInput, EmailInput, Options, Slider };

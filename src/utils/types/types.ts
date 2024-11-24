@@ -17,11 +17,11 @@ export interface Style {
   labelContainer?: string;
   input?: string;
   inputContainer?: string;
+  optionsLabel?: string;
   error?: string;
   errorContainer?: string;
   valid?: string;
   validContainer?: string;
-  optionsLabel?: string;
 }
 export interface TextField extends BaseField<string> {
   type?: FieldType.TEXT;
