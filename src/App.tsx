@@ -11,6 +11,10 @@ const App = () => {
       value: '',
       required: true,
       domain: 'example.com',
+      style: {
+        label: 'text-red-500',
+        labelContainer: '',
+      },
     },
     lastName: {
       name: 'lastName',
@@ -48,10 +52,11 @@ const App = () => {
         { label: 'Potato', value: 2 },
       ],
       type: FieldType.OPTIONS,
-      inputType: 'dropdown' as 'dropdown',
+      inputType: 'radio' as 'radio',
       dataType: 'number' as 'number',
       label: 'Vegetable',
       name: 'vegetable',
+      required: true,
     },
   };
 

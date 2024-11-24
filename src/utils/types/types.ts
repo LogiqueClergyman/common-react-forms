@@ -5,13 +5,24 @@ export interface BaseField<T = string | boolean | number> {
   type?: FieldType;
   value?: T;
   required?: boolean;
-  style?: React.CSSProperties;
   placeholder?: string;
   error?: string;
   onChange: (value: any) => void;
-  custom?: any;
+  style?: Style;
 }
 
+export interface Style {
+  container?: string;
+  label?: string;
+  labelContainer?: string;
+  input?: string;
+  inputContainer?: string;
+  error?: string;
+  errorContainer?: string;
+  valid?: string;
+  validContainer?: string;
+  optionsLabel?: string;
+}
 export interface TextField extends BaseField<string> {
   type?: FieldType.TEXT;
   minLength?: number;

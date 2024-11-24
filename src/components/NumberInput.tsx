@@ -25,8 +25,12 @@ const NumberInput: React.FC<NumberField> = ({
     );
   };
   return (
-    <div className="input-container">
-      {label && <label className="input-label">{label}</label>}
+    <div className={`input-container ${style?.container}`}>
+      {label && (
+        <div className={`${style?.labelContainer}`}>
+          <label className={`input-label ${style?.label}`}>{label}</label>
+        </div>
+      )}
       <input
         type={type}
         name={name}
@@ -38,10 +42,14 @@ const NumberInput: React.FC<NumberField> = ({
         step={step}
         min={min}
         max={max}
-        className="input-box"
+        className={`input-box ${style?.input}`}
       />
-      {inputError && <p className="basic-error">{inputError}</p>}
-      {value && !inputError && <p className="basic-valid">Looks good!</p>}
+      {inputError && (
+        <p className={`basic-error ${style?.error}`}>{inputError}</p>
+      )}
+      {value && !inputError && (
+        <p className={`basic-valid ${style?.valid}`}>Looks good!</p>
+      )}
     </div>
   );
 };

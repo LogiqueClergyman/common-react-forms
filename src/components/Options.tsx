@@ -9,6 +9,9 @@ const Options: React.FC<OptionsField> = ({
   dataType,
   inputType,
   onChange,
+  style,
+  error,
+  required,
 }) => {
   const [selectedValue, setSelectedValue] = useState<any>(
     inputType === 'checkbox' ? [] : value,
@@ -47,78 +50,106 @@ const Options: React.FC<OptionsField> = ({
   };
 
   return (
-    <div className="relative m-2 pt-2 border-t-2 rounded-lg border-gray-300">
+    <div className={`basic-optionComponent-container ${style?.container}`}>
       {label && (
-        <label className="input-label !-top-3 !left-2.5" htmlFor={name}>
-          {label}
-        </label>
+        <div
+          className={`basic-label-options-container  ${style?.labelContainer}`}
+        >
+          <label className={`basic-label ${style?.label}`} htmlFor={name}>
+            {label}
+          </label>
+        </div>
       )}
-      <div>
-        {inputType === 'dropdown' ? (
+      {inputType === 'dropdown' ? (
+        <div className={`basic-options-container ${style?.inputContainer}`}>
           <select
             name={name}
             id={name}
             value={selectedValue}
             onChange={(e) => handleChange(e.target.value)}
-            className="basic-dropdown"
+            className={`basic-dropdown ${style?.input}`}
+            required={required}
           >
             {options.map((option, index) => (
-              <option key={index} value={String(option.value)}>
+              <option
+                key={index}
+                value={String(option.value)}
+                className={`basic-options-label ${style?.optionsLabel}`}
+              >
                 {option.label}
               </option>
             ))}
           </select>
-        ) : (
-          options.map((option, index) => {
-            // eslint-disable-next-line @typescript-eslint/no-shadow
-            const { label, value } = option;
+        </div>
+      ) : (
+        options.map((option, index) => {
+          // eslint-disable-next-line @typescript-eslint/no-shadow
+          const { label, value } = option;
 
-            if (inputType === 'radio') {
-              return (
-                <div key={index} className="flex items-center space-x-2">
-                  <input
-                    type="radio"
-                    id={`${name}-${value}`}
-                    name={name}
-                    value={value}
-                    checked={selectedValue === value}
-                    onChange={() => handleChange(value)}
-                    className="basic-radio"
-                  />
-                  <label
-                    htmlFor={`${name}-${value}`}
-                    className="basic-options-label"
-                  >
-                    {label}
-                  </label>
-                </div>
-              );
-            }
+          if (inputType === 'radio') {
+            return (
+              <div
+                key={index}
+                className={`basic-options-container ${style?.inputContainer}`}
+              >
+                <input
+                  type="radio"
+                  id={`${name}-${value}`}
+                  name={name}
+                  value={value}
+                  checked={selectedValue === value}
+                  onChange={() => handleChange(value)}
+                  className={`basic-radio ${style?.input}`}
+                  required={required}
+                />
+                <label
+                  htmlFor={`${name}-${value}`}
+                  className={`basic-options-label ${style?.optionsLabel}`}
+                >
+                  {label}
+                </label>
+              </div>
+            );
+          }
 
-            if (inputType === 'checkbox') {
-              return (
-                <div key={index} className="">
-                  <input
-                    type="checkbox"
-                    id={`${name}-${value}`}
-                    name={name}
-                    value={String(option.value)}
-                    checked={selectedValue.includes(value)}
-                    onChange={() => handleChange(value)}
-                    className="basic-checkbox"
-                  />
-                  <label
-                    htmlFor={`${name}-${value}`}
-                    className="basic-checkbox-label"
-                  >
-                    {label}
-                  </label>
-                </div>
-              );
-            }
-          })
-        )}
-      </div>
+          if (inputType === 'checkbox') {
+            return (
+              <div
+                key={index}
+                className={`basic-options-container ${style?.inputContainer}`}
+              >
+                <input
+                  type="checkbox"
+                  id={`${name}-${value}`}
+                  name={name}
+                  value={String(option.value)}
+                  checked={selectedValue.includes(value)}
+                  onChange={() => handleChange(value)}
+                  // required={required}
+                  className={`basic-checkbox ${style?.input}`}
+                />
+                <label
+                  htmlFor={`${name}-${value}`}
+                  className={`basic-options-label ${style?.optionsLabel}`}
+                >
+                  {label}
+                </label>
+              </div>
+            );
+          }
+        })
+      )}
+
+      {error && (
+        <div className={`${style?.errorContainer}`}>
+          <p className={`basic-error ${style?.error}`}>{error}</p>
+        </div>
+      )}
+      {value && !error && (
+        <div className={`${style?.validContainer}`}>
+          <p className={`basic-valid ${style?.valid}`}>Looks good!</p>
+        </div>
+      )}
     </div>
   );
 };

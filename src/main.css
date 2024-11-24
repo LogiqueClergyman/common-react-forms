@@ -2,68 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-.input-box {
-  @apply outline-none m-2 px-2 py-1 border-2 border-gray-300 rounded-md text-lg focus:border-blue-500 focus:outline-none font-serif transition-all duration-300;
-}
+@layer components {
+  .input-box {
+    @apply outline-none m-2 px-2 py-1 border-2 border-gray-300 rounded-md text-lg focus:border-blue-500 focus:outline-none font-serif transition-all duration-300;
+  }
 
-.basic-label {
-  @apply text-blue-500 font-sans text-sm;
-}
-.input-label {
-  @apply absolute -top-1 left-5 basic-label bg-white px-1 z-10;
-}
+  .basic-label {
+    @apply text-blue-500 font-sans text-sm;
+  }
 
-.input-container {
-  @apply relative mt-1;
-}
+  .basic-label-container {
+    @apply bg-white z-10 mt-3 w-fit ml-2;
+  }
+  .input-label {
+    @apply basic-label;
+  }
 
-.basic-form {
-  @apply relative grid grid-cols-2 w-fit;
-}
+  .input-container {
+    @apply relative mt-1;
+  }
 
-.basic-error {
-  @apply text-red-600 font-sans italic px-2 relative bottom-2.5 text-sm;
-}
+  .basic-form {
+    @apply relative grid grid-cols-2 w-fit;
+  }
 
-.basic-valid {
-  @apply text-green-600 font-sans italic px-2 relative bottom-2.5 text-sm;
-}
+  .basic-error {
+    @apply text-red-600 font-sans italic px-2 relative bottom-2.5 text-sm;
+  }
 
-.basic-button {
-  @apply text-white bg-blue-500 px-6 py-2 w-fit rounded-lg m-2 font-semibold hover:bg-blue-800 transition-all duration-300;
-}
+  .basic-valid {
+    @apply text-green-600 font-sans italic px-2 relative bottom-2.5 text-sm;
+  }
 
-.basic-grid {
-  @apply relative grid grid-cols-1 sm:grid-cols-2 w-fit border-2 rounded-sm p-6 sm:p-10;
-}
+  .basic-button {
+    @apply text-white bg-blue-500 px-6 py-2 w-fit rounded-lg m-2 font-semibold hover:bg-blue-800 transition-all duration-300;
+  }
 
-.basic-slder-container {
-  @apply input-box relative;
-}
+  .basic-grid {
+    @apply relative grid grid-cols-1 sm:grid-cols-2 w-fit border-2 rounded-sm p-6 sm:p-10;
+  }
 
-.basic-slider-inner {
-  @apply w-full flex flex-col p-4 items-start justify-center;
-}
+  .basic-slder-container {
+    @apply input-box relative;
+  }
+  .basic-label-slider-container {
+    @apply basic-label-container mt-0 ml-0;
+  }
+  .basic-slider-inner {
+    @apply w-full flex flex-col p-4 items-start justify-center;
+  }
 
-.basic-slider-label-container {
-  @apply absolute -top-4 left-2.5 bg-white px-1 flex text-sm  gap-2 items-center;
-}
+  .basic-label-container {
+    @apply absolute -top-4 left-2.5 bg-white px-1 flex text-sm gap-2 items-center;
+  }
 
-.basic-checkbox {
-  @apply h-4 w-4 m-1 accent-blue-200 transition duration-150 ease-in-out;
-}
+  .basic-checkbox {
+    @apply h-4 w-4 m-2 accent-blue-200 transition duration-150 ease-in-out;
+  }
 
-.basic-options-label {
-  @apply text-sm font-medium text-gray-700;
-}
+  .basic-options-label {
+    @apply text-sm font-medium text-gray-700;
+  }
+  .basic-label-options-container {
+    @apply basic-label-container mt-1 ml-0;
+  }
+  .basic-radio {
+    @apply relative appearance-none w-4 h-4 border rounded-full border-blue-700 mx-1 my-2 cursor-pointer checked:bg-blue-300;
+  }
 
-.basic-radio {
-  @apply relative appearance-none w-4 h-4 
-  border rounded-full  border-blue-700 m-1
-  cursor-pointer
-  checked:bg-blue-300;
-}
+  .basic-dropdown {
+    @apply block w-full mt-1 outline-none p-2 rounded-md shadow-sm focus:ring-blue-500 focus:outline-blue-500 sm:text-sm bg-white transition-all duration-300;
+  }
 
-.basic-dropdown {
-  @apply block w-full mt-1 outline-none p-2 rounded-md shadow-sm focus:ring-blue-500 focus:outline-blue-500 sm:text-sm bg-white transition-all duration-300;
+  .basic-options-container {
+    @apply flex items-center space-x-2;
+  }
+
+  .basic-optionComponent-container {
+    @apply relative m-2 border-t-2 rounded-lg border-gray-300;
+  }
 }

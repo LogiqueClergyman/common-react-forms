@@ -30,8 +30,12 @@ const PasswordInput: React.FC<PasswordField> = ({
     );
   };
   return (
-    <div className="input-container">
-      {label && <label className="input-label">{label}</label>}
+    <div className={`input-container ${style?.container}`}>
+      {label && (
+        <div className={`basic-label-container ${style?.labelContainer}`}>
+          <label className={`basic-label ${style?.label}`}>{label}</label>
+        </div>
+      )}
       <input
         type={showPass ? 'text' : 'password'}
         name={name}
@@ -40,13 +44,17 @@ const PasswordInput: React.FC<PasswordField> = ({
         style={style}
         required={required}
         placeholder={placeholder}
-        className="input-box"
+        className={`input-box ${style?.input}`}
       />
       <button type="button" onClick={() => setShowPass(!showPass)}>
         {!showPass ? '👁' : '🕶'}
       </button>
-      {inputError && <p className="basic-error">{inputError}</p>}
-      {value && !inputError && <p className="basic-valid">Looks good!</p>}
+      {inputError && (
+        <p className={`basic-error ${style?.error}`}>{inputError}</p>
+      )}
+      {value && !inputError && (
+        <p className={`basic-valid ${style?.valid}`}>Looks good!</p>
+      )}
     </div>
   );
 };

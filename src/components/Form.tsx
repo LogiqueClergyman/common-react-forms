@@ -47,7 +47,6 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
       const fieldValue = values[fieldName];
 
       let error: string | undefined = undefined;
-
       if (!error) {
         switch (field.type) {
           case FieldType.NUMBER:
@@ -75,6 +74,23 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
               required: field.required,
               regex: field.regex,
             });
+            break;
+          case FieldType.OPTIONS:
+            if (field.inputType === 'checkbox' && Array.isArray(fieldValue)) {
+              if (field.required && fieldValue.length === 0) {
+                error = `At least one option has to be selected.`;
+              }
+            } else if (
+              field.inputType === 'radio' &&
+              (fieldValue === undefined || fieldValue === null)
+            ) {
+              error = `${field.label || fieldName} requires an option to be selected.`;
+            } else if (
+              field.inputType === 'dropdown' &&
+              (fieldValue === undefined || fieldValue === null)
+            ) {
+              error = `${field.label || fieldName} requires a selection.`;
+            }
             break;
         }
       }
@@ -113,7 +129,6 @@ const Form: React.FC<FormProps> = ({ fields, onSubmit }) => {
       name: field.name,
       value: values[field.name],
     };
-    // delete commonProps.label;
     const inputComponents: Record<FieldType, React.ElementType> = {
       [FieldType.NUMBER]: NumberInput,
       [FieldType.EMAIL]: EmailInput,
