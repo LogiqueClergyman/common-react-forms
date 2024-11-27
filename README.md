@@ -259,3 +259,12 @@ The style prop can accept tailwind styles in string. Each does exactly what it s
 ## ✍️ Authors <a name = "authors"></a>
 
 - [@LogiqueClergyman](https://github.com/LogiqueClergyman) - Idea & Initial work
+
+## 📝Upcoming changes
+
+Different inputs may be wrapped into a singular component, to avoid code repition and ease the flow.
+Support for custom CSS.
+Extension of ENUMS to cover input and data types.
+More components.
+More ready-to-use styles.
+Intorduction of Themes.

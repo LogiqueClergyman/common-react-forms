@@ -11,10 +11,6 @@ const App = () => {
       value: '',
       required: true,
       domain: 'example.com',
-      style: {
-        label: 'text-red-500',
-        labelContainer: '',
-      },
     },
     lastName: {
       name: 'lastName',
